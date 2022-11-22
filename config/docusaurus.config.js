@@ -141,7 +141,7 @@ const config = {
         sidebarPath: require.resolve('./sidebarsSystemContracts.js'),
         versions: {
           current: {
-             label: '1.0',
+             label: 'latest',
              path: 'latest',
           },
         },
@@ -268,7 +268,7 @@ const config = {
             position: 'left',
             items: [
               {
-                label: '1.0',
+                label: 'latest',
                 href: '/reference-contracts/latest/',
               },
               // ... more items

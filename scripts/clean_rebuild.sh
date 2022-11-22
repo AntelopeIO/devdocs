@@ -107,9 +107,9 @@ if [ -n "$ARG_STAGING" ]; then
   CMD_FLAGS="-xs"
 fi
 
-for gitrepo in eosnetworkfoundation/docs \
+for gitrepo in AntelopeIO/docs \
     AntelopeIO/cdt \
-    eosnetworkfoundation/eos-system-contracts \
+    AntelopeIO/reference-contracts \
     AntelopeIO/leap \
     AntelopeIO/DUNE \
     eosnetworkfoundation/mandel-eosjs \
@@ -126,8 +126,8 @@ do
   if [ "${gitrepo}" == "AntelopeIO/cdt" ]; then
     branch="v3.0.1"
   fi
-  if [ "${gitrepo}" == "eosnetworkfoundation/eos-system-contracts" ]; then
-    branch="v3.1.1"
+  if [ "${gitrepo}" == "AntelopeIO/reference-contracts" ]; then
+    branch="main"
   fi
 
   if [ -z "$branch" ]; then

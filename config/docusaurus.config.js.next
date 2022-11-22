@@ -266,7 +266,7 @@ const config = {
             position: 'left',
             items: [
               {
-                label: '3.1',
+                label: '1.0',
                 href: '/reference-contracts/latest/',
               },
               // ... more items

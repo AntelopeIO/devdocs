@@ -14,10 +14,10 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: <Translate>How EOS Works</Translate>,
+    title: <Translate>How Antelope Works</Translate>,
     description: (
       <Translate>
-        Get familar with the concepts and how to work with the core software.
+        Get familiar with the concepts and how to work with the core software.
       </Translate>
     ),
     link: '/docs/latest/',
@@ -35,7 +35,7 @@ const FeatureList: FeatureItem[] = [
     title: <Translate>The Antelope Stack</Translate>,
     description: (
       <Translate>
-        Bring the power of EOS into your dApp.
+        Bring the power of Antelope into your dApp.
       </Translate>
     ),
     link: '/leap/latest/',

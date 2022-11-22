@@ -8,20 +8,20 @@ DoxygenSystemContracts() {
   LOGO=$2
   CONFIG_DIR=$3
 
-  # remove this to publish License Agreement Under system-contract/reference/Pages
+  # remove this to publish License Agreement Under reference-contract/reference/Pages
   SUPRESS_EULA=1
 
   # location to write docs
-  DEST_DIR="${BUILD_ROOT}/devdocs/eosdocs/system-contracts/"
+  DEST_DIR="${BUILD_ROOT}/devdocs/eosdocs/reference-contracts/"
 
   # pull from github
   # create reference dir if it does not exist
   [ ! -d "$DEST_DIR" ] && mkdir -p "$DEST_DIR"
 
   # copy in doxygen config file
-  cp "$CONFIG_DIR"/doxyfile/system-contracts-doxyfile Doxyfile
+  cp "$CONFIG_DIR"/doxyfile/reference-contracts-doxyfile Doxyfile
   # copy in doxybook config file
-  cp "$CONFIG_DIR"/doxybook/system-contracts.doxybook.config.json .
+  cp "$CONFIG_DIR"/doxybook/reference-contracts.doxybook.config.json .
   # copy in logo
   cp "${LOGO}" docs
   # run doxygen
@@ -30,7 +30,7 @@ DoxygenSystemContracts() {
   # convert doxybook XML to Markdown
   [ ! -d reference ] && mkdir reference
   # convert XML to Markdown
-  doxybook2 --input doxygen_out/xml --output reference --config system-contracts.doxybook.config.json
+  doxybook2 --input doxygen_out/xml --output reference --config reference-contracts.doxybook.config.json
   find reference -type f -print0 | while IFS= read -r -d '' i
   do
     echo "$i"
@@ -110,33 +110,33 @@ MarkdownSystemContracts() {
   cat tmp_README.md >> markdown_out/README.md
 
   # fix relative links
-  REPLACE="\/system-contracts\/latest\/reference\/"
+  REPLACE="\/reference-contracts\/latest\/reference\/"
   FIND="contracts\/eosio\."
   sed "s/${FIND}/${REPLACE}/g" markdown_out/README.md > tmp_README.md
   mv tmp_README.md markdown_out/README.md
 
   FIND="action-reference\/eosio\.bios"
-  REPLACE="\/system-contracts\/latest\/reference\/Classes\/classeosiobios_1_1bios"
+  REPLACE="\/reference-contracts\/latest\/reference\/Classes\/classeosiobios_1_1bios"
   sed "s/${FIND}/${REPLACE}/" markdown_out/index.md > tmp_index.md
   mv tmp_index.md markdown_out/index.md
 
   FIND="action-reference\/eosio\.system"
-  REPLACE="\/system-contracts\/latest\/reference\/Classes\/classeosiosystem_1_1system__contract"
+  REPLACE="\/reference-contracts\/latest\/reference\/Classes\/classeosiosystem_1_1system__contract"
   sed "s/${FIND}/${REPLACE}/" markdown_out/index.md > tmp_index.md
   mv tmp_index.md markdown_out/index.md
 
   FIND="action-reference\/eosio\.msig"
-  REPLACE="\/system-contracts\/latest\/reference\/Classes\/classeosio_1_1multisig"
+  REPLACE="\/reference-contracts\/latest\/reference\/Classes\/classeosio_1_1multisig"
   sed "s/${FIND}/${REPLACE}/" markdown_out/index.md > tmp_index.md
   mv tmp_index.md markdown_out/index.md
 
   FIND="action-reference\/eosio\.token"
-  REPLACE="\/system-contracts\/latest\/reference\/Classes\/classeosio_1_1token"
+  REPLACE="\/reference-contracts\/latest\/reference\/Classes\/classeosio_1_1token"
   sed "s/${FIND}/${REPLACE}/" markdown_out/index.md > tmp_index.md
   mv tmp_index.md markdown_out/index.md
 
   FIND="action-reference\/eosio\.wrap"
-  REPLACE="\/system-contracts\/latest\/reference\/Classes\/classeosio_1_1wrap"
+  REPLACE="\/reference-contracts\/latest\/reference\/Classes\/classeosio_1_1wrap"
   sed "s/${FIND}/${REPLACE}/" markdown_out/index.md > tmp_index.md
   mv tmp_index.md markdown_out/index.md
 
@@ -148,10 +148,10 @@ MarkdownSystemContracts() {
   mv tmp_index.md markdown_out/index.md
 
   # copy into serving location
-  cp -R markdown_out/* "${ARG_BUILD_DIR}"/devdocs/eosdocs/system-contracts
+  cp -R markdown_out/* "${ARG_BUILD_DIR}"/devdocs/eosdocs/reference-contracts
 }
 
-Install_Eos-system-contracts() {
+Install_Reference-contracts() {
   SCRIPT_DIR=$1
   ARG_GIT_REPO=$2
   ARG_BUILD_DIR=$3

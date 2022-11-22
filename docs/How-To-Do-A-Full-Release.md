@@ -96,7 +96,7 @@ done
 
 ## Create Version
 
-[Docusaurus Documentation on Versioning is the best reference](https://docusaurus.io/docs/versioning). We have separate versions for leap, cdt, and system-contracts and this requires multi-index. Look at [multi-index for the documentation on versioning across several document sets](https://docusaurus.io/docs/docs-multi-instance#tagging-new-versions).
+[Docusaurus Documentation on Versioning is the best reference](https://docusaurus.io/docs/versioning). We have separate versions for leap, cdt, and reference-contracts and this requires multi-index. Look at [multi-index for the documentation on versioning across several document sets](https://docusaurus.io/docs/docs-multi-instance#tagging-new-versions).
 
 Now that the documents are in place, version them. This command creates an archive and copies the documents to a new directory.
 ```

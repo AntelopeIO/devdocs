@@ -250,12 +250,12 @@
     "message": "展开侧边栏",
     "description": "The ARIA label and title attribute for expand button of doc sidebar"
   },
-  "EOS Developer Documentation": {
-    "message": "EOS 程序员 文档",
+  "Antelope Developer Documentation": {
+    "message": "Antelope 程序员 文档",
      "description": "Title of site on homepage in index.tsx code"
   },
-  "Documentation for Developing on EOS Blockchain": {
-     "message": "Documentation for Developing on EOS Blockchain",
+  "Documentation for Developing on Antelope Platform": {
+     "message": "Documentation for Developing on Antelope Platform",
      "description": "Tagline on homepage in index.tsx code"
   },
   "Smart Contracts": {

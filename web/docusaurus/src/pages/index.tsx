@@ -9,8 +9,8 @@ import styles from './index.module.css';
 
 import Translate, {translate} from '@docusaurus/Translate';
 
-const SiteTitle = <Translate>EOS Developer Documentation</Translate>;
-const SiteDesc = <Translate>Documentation for Developing on EOS Blockchain</Translate>;
+const SiteTitle = <Translate>Antelope Developer Documentation</Translate>;
+const SiteDesc = <Translate>Documentation for Developing on Antelope Platform</Translate>;
 
 function HomepageHeader() {
   return (

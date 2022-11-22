@@ -3,16 +3,16 @@ diff a/config/docusaurus.config.js b/config/docusaurus.config.js	(rejected hunks
  
  /** @type {import('@docusaurus/types').Config} */
  const config = {
--  title: 'EOS Developer Documenation',
+-  title: 'Antelope Developer Documenation',
 +  title: 'Antelope Developer Documentation',
-   tagline: 'Documentation for Developing on EOS Blockchain',
+   tagline: 'Documentation for Developing on Antelope Platform',
    url: 'https://docs.eosnetwork.com/',
    baseUrl: '/',
 @@ -215,7 +215,7 @@ const config = {
      /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
      ({
        navbar: {
--        title: 'EOS Developer Documenation',
+-        title: 'Antelope Developer Documenation',
 +        title: 'Antelope Developer Documentation',
          logo: {
            alt: 'EOS Network',

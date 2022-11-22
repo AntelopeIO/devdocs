@@ -3,8 +3,8 @@ diff a/web/docusaurus/src/pages/index.tsx b/web/docusaurus/src/pages/index.tsx	(
  
  import Translate, {translate} from '@docusaurus/Translate';
  
--const SiteTitle = <Translate>EOS Developer Documenation</Translate>;
+-const SiteTitle = <Translate>Antelope Developer Documenation</Translate>;
 +const SiteTitle = <Translate>Antelope Developer Documentation</Translate>;
- const SiteDesc = <Translate>Documentation for Developing on EOS Blockchain</Translate>;
+ const SiteDesc = <Translate>Documentation for Developing on Antelope Platform</Translate>;
  
  function HomepageHeader() {

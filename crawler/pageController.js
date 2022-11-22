@@ -46,7 +46,7 @@ async function scrapeAll(browserInstance){
 			data['url'] = links[i];
 			data['url_without_anchor'] = links[i];
 			data['anchor'] = "Document";
-			tags = ["leap","dune","system-contracts","cdt","swift-sdk","eosjs"];
+			tags = ["leap","dune","reference-contracts","cdt","swift-sdk","eosjs"];
 			data['docusaurus_tag'] = lib.getDocusuarusTag(links[i],domain, tags);
 			data['language'] = lib.getLanguageCode(links[i],domain) || "en";
 

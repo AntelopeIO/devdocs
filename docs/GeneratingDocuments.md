@@ -158,8 +158,8 @@ There is one markdown file, an index of the top level interfaces in Swift. This 
 ## EOSJS and Typescript ##
 The repo `mandel-eosjs` is cloned and typedoc runs to generate the documentation. Typedoc outputs as markdown, and all files are located under `eosdocs/client-side/jsdocs`
 
-## EOS System Contract API Reference ##
-The repo `eos-system-contracts` is cloned. The markdown is copied into the `system-contracts` folder and doxygen/doxybook2 is run to generate markdown files which live under `system-contracts/reference`
+## Antelope Reference Contract API Reference ##
+The repo `reference-contracts` is cloned. The markdown is copied into the `reference-contracts` folder and doxygen/doxybook2 is run to generate markdown files which live under `reference-contracts/reference`
 
 ## Contract Developer Toolkit ##
 The repo `cdt` is cloned. The markdown is copied into the `cdt` folder and doxygen/doxybook2 is run to generate markdown files which live under `cdt/reference`

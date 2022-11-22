@@ -132,11 +132,11 @@ doxybook2 -v
 ### `python3` ###
 Need to make sure python 3.4 or better is installed. It is assumed the executable is named `python3`
 
-## EOS Documentation Scripts ##
+## Antelope Documentation Scripts ##
 Clone the engineering repo.
 
 ```
-git clone https://github.com/eosnetworkfoundation/devdocs
+git clone https://github.com/AntelopeIO/devdocs
 cd devdocs
 ```
 Follow the instructions in the README.md to

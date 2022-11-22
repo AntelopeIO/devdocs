@@ -23,7 +23,7 @@
 # FUNCTIONS
 #############################################################################
 Help() {
-  echo "Creates web version of documentation pulling together documentation from several gitrepositories across the EOS Networks"
+  echo "Creates web version of documentation pulling together documentation from several gitrepositories across the Antelope Network"
   echo ""
   echo "Syntax: generate_documents.sh [-r|d|b|t|i|h|x|f]"
   echo "mandatory: -r owner/rep and -d directory"
@@ -40,8 +40,8 @@ Help() {
   echo "-x: suppress build statics process"
   echo "-f: fast, skip git clone if files less then 1 hour old"
   echo ""
-  echo "example: generate_documents.sh -r eosnetworkfoundation/mandel -b ericpassmore-working -t v3.1.1 -d /path/to/build_root -i aws_identity -h eric@hostA -h eric@hostB -c /s3mount/content"
-  echo "Run script to build mandel docs and update production site , with branch ericpassmore-working and tag v3.1.1. This updates latest documentation version"
+  echo "example: generate_documents.sh -r AntelopeIO/leap -b ericpassmore-working -t v3.1.1 -d /path/to/build_root -i aws_identity -h eric@hostA -h eric@hostB -c /s3mount/content"
+  echo "Run script to build leap docs and update production site , with branch ericpassmore-working and tag v3.1.1. This updates latest documentation version"
   exit 1
 }
 
@@ -57,7 +57,7 @@ Create_Top_Level_Dir() {
   [ ! -d "${ARG_BUILD_DIR}/devdocs/eosdocs" ] && mkdir -p "${ARG_BUILD_DIR:?}/devdocs/eosdocs"
   [ ! -d "${ARG_BUILD_DIR}/devdocs/eosdocs/docs" ] && mkdir -p "${ARG_BUILD_DIR:?}/devdocs/eosdocs/docs"
   [ ! -d "${ARG_BUILD_DIR}/devdocs/eosdocs/cdt" ] && mkdir -p "${ARG_BUILD_DIR:?}/devdocs/eosdocs/cdt"
-  [ ! -d "${ARG_BUILD_DIR}/devdocs/eosdocs/system-contracts" ] && mkdir -p "${ARG_BUILD_DIR:?}/devdocs/eosdocs/system-contracts"
+  [ ! -d "${ARG_BUILD_DIR}/devdocs/eosdocs/reference-contracts" ] && mkdir -p "${ARG_BUILD_DIR:?}/devdocs/eosdocs/reference-contracts"
   [ ! -d "${ARG_BUILD_DIR}/devdocs/eosdocs/leap" ] && mkdir -p "${ARG_BUILD_DIR:?}/devdocs/eosdocs/leap"
   # i18n directories zh and ko, english is the default and not included
   [ ! -d "${ARG_BUILD_DIR}/devdocs/i18n" ] && mkdir "${ARG_BUILD_DIR:?}/devdocs/i18n"

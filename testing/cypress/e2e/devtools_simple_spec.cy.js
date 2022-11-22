@@ -18,9 +18,9 @@ describe('Testing Each Respository', () => {
     cy.get('h1').contains('primary')
   });
   it('I can see System Contract Titles', () => {
-    cy.visit('http://localhost:3000/system-contracts/latest/');
+    cy.visit('http://localhost:3000/reference-contracts/latest/');
     cy.get('h1').contains('Overview');
-    cy.visit('http://localhost:3000/system-contracts/latest/about_system_contracts');
+    cy.visit('http://localhost:3000/reference-contracts/latest/about_system_contracts');
     cy.get('h1').contains('system contracts')
   });
   it('I can see DUNE Titles', () => {
@@ -40,7 +40,7 @@ describe('Testing Code Resources', () => {
     cy.get('article div ul').find('li').its('length').should('be.gte', 3)
   });
   it('I can see ESO System Contract Resrouces', () => {
-    cy.visit('http://localhost:3000/system-contracts/latest/reference/Classes/');
+    cy.visit('http://localhost:3000/reference-contracts/latest/reference/Classes/');
     cy.get('article div ul').find('li').its('length').should('be.gte', 3)
   });
 });

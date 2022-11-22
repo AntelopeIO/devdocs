@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'EOS Developer Documentation',
-  tagline: 'Documentation for Developing on EOS Blockchain',
+  title: 'Antelope Developer Documentation',
+  tagline: 'Documentation for Developing on Antelope Platform',
   url: 'https://docs.eosnetwork.com/',
   baseUrl: '/',
   onBrokenLinks: 'warn',
@@ -134,14 +134,14 @@ const config = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'system-contracts',
+        id: 'reference-contracts',
         lastVersion: 'current',
-        path: 'eosdocs/system-contracts',
-        routeBasePath: 'system-contracts',
+        path: 'eosdocs/reference-contracts',
+        routeBasePath: 'reference-contracts',
         sidebarPath: require.resolve('./sidebarsSystemContracts.js'),
         versions: {
           current: {
-             label: '3.1',
+             label: 'latest',
              path: 'latest',
           },
         },
@@ -223,7 +223,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'EOS Developer Documentation',
+        title: 'Antelope Developer Documentation',
         logo: {
           alt: 'EOS Network',
           src: 'img/eosn_logo.png',
@@ -264,12 +264,12 @@ const config = {
           },
           {
             type: 'dropdown',
-            label: 'EOS System Contracts',
+            label: 'Antelope Reference Contracts',
             position: 'left',
             items: [
               {
-                label: '3.1',
-                href: '/system-contracts/latest/',
+                label: 'latest',
+                href: '/reference-contracts/latest/',
               },
               // ... more items
             ],
@@ -296,7 +296,7 @@ const config = {
             position: 'right',
           },
           {
-            href: 'https://github.com/eosnetworkfoundation',
+            href: 'https://github.com/AntelopeIO',
             label: 'GitHub',
             position: 'right',
           },

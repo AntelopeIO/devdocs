@@ -271,11 +271,11 @@ Remote_Upload() {
         # on remote move into content directory
         move_cmd="mv ${base_tar_file} ${ARG_CONTENT:-~/content}"
         # on remote backup existing
-        backup_cmd="if [ ! -d ${WEBROOT:-/var/www/html/antelope} ]; then mkdir ${WEBROOT:-/var/www/html/antelope}; fi && cd ${WEBROOT:-/var/www/html/antelope} && tar czf ${ARG_CONTENT:-~/content}/devdocs_${BUILD_TYPE:-production}_${bdate}_backup.tgz -- *"
+        backup_cmd="if [ ! -d ${WEBROOT:-/var/www/html/antelope/production} ]; then mkdir ${WEBROOT:-/var/www/html/antelope/production}; fi && cd ${WEBROOT:-/var/www/html/antelope/production} && tar czf ${ARG_CONTENT:-~/content}/devdocs_${BUILD_TYPE:-production}_${bdate}_backup.tgz -- *"
         # loop over tar 1st level and delete on remote host
-        delete_cmd="cd ${WEBROOT:-/var/www/html/antelope} && tar tfz ${ARG_CONTENT:-~/content}/${base_tar_file} | cut -d'/' -f1 | sort -u | xargs rm -rf"
+        delete_cmd="cd ${WEBROOT:-/var/www/html/antelope/production} && tar tfz ${ARG_CONTENT:-~/content}/${base_tar_file} | cut -d'/' -f1 | sort -u | xargs rm -rf"
         # un-pack tar populate new things
-        update_cmd="cd ${WEBROOT:-/var/www/html/antelope} && tar xzf ${ARG_CONTENT:-~/content}/${base_tar_file}"
+        update_cmd="cd ${WEBROOT:-/var/www/html/antelope/production} && tar xzf ${ARG_CONTENT:-~/content}/${base_tar_file}"
         ### sftp copy over
         echo "put ${archive}" | sftp -i "$ARG_ID_FILE" "$host"
         ### move
@@ -389,7 +389,7 @@ if [ "$DEBUG" ]; then
       echo " $val"
     done
   echo "webroot "
-  echo "${WEBROOT:-/var/www/html/antelope}"
+  echo "${WEBROOT:-/var/www/html/antelope/production}"
   echo "build type"
   echo "${BUILD_TYPE:-production}"
 fi

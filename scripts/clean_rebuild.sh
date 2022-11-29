@@ -51,8 +51,8 @@ fi
 
 # Remove Last Updates while we run job
 # Set Lock File
-UPDATE_DATETIME_FILE="${WEBROOT:-/var/www/html/antelope}"/updated.html
-LOCK_FILE="${WEBROOT:-/var/www/html/antelope}"/clean_rebuild.lock
+UPDATE_DATETIME_FILE="${WEBROOT:-/var/www/html/antelope/production}"/updated.html
+LOCK_FILE="${WEBROOT:-/var/www/html/antelope/production}"/clean_rebuild.lock
 
 ## Exit if lock file exists
 #  Else Set lock file

@@ -8,8 +8,8 @@
 ##############################################################################
 #Create_Top_Level_Dir
 #Install_Docusaurus
+#Install_DOC6S_Theme
 #Install_Web_Content
-#Install_Branding_Logos
 ##############################################################################
 # Main - Calls Code Based on Arguments Passed In
 ##############################################################################
@@ -25,7 +25,7 @@
 Help() {
   echo "Creates web version of documentation pulling together documentation from several gitrepositories across the Antelope Network"
   echo ""
-  echo "Syntax: generate_documents.sh [-r|d|b|t|i|h|x|f]"
+  echo "Syntax: generate_documents.sh [-r|d|b|t|i|h|c|s|x|f]"
   echo "mandatory: -r owner/rep and -d directory"
   echo ""
   echo "options:"
@@ -40,8 +40,12 @@ Help() {
   echo "-x: suppress build statics process"
   echo "-f: fast, skip git clone if files less then 1 hour old"
   echo ""
-  echo "example: generate_documents.sh -r AntelopeIO/leap -b ericpassmore-working -t v3.1.1 -d /path/to/build_root -i aws_identity -h eric@hostA -h eric@hostB -c /s3mount/content"
-  echo "Run script to build leap docs and update production site , with branch ericpassmore-working and tag v3.1.1. This updates latest documentation version"
+  echo "example: generate_documents.sh -r eosnetworkfoundation/mandel -b ericpassmore-working -t v3.1.1 -d /path/to/build_root -i aws_identity -h eric@hostA -h eric@hostB -c /s3mount/content"
+  echo "Run script to build mandel docs and update production site , with branch ericpassmore-working and tag v3.1.1. This updates latest documentation version"
+  echo "When you provide host and identify the content will be deployed to a production server"
+  echo "   Default location for files is /var/www/html/antelope/production"
+  echo "   Staging location for files is /var/www/html/antelope/devrel_staging"
+  echo "   Currently these locations are not configurable"
   exit 1
 }
 
@@ -69,15 +73,6 @@ Create_Top_Level_Dir() {
   [ ! -d "${ARG_BUILD_DIR}/devdocs/i18n/ko/docusaurus-plugin-content-docs/current" ] && mkdir "${ARG_BUILD_DIR:?}/devdocs/i18n/ko/docusaurus-plugin-content-docs/current"
 }
 
-####
-# Copy over logos
-Install_Branding_Logos() {
-  # copy over the logo these directories created when docusarus site is build
-  [ ! -f "${ARG_BUILD_DIR}/devdocs/static/img/eosn_logo.png" ] && cp "${SCRIPT_DIR:?}/../web/eosn_logo.png" "${ARG_BUILD_DIR:?}/devdocs/static/img/eosn_logo.png"
-  SMALL_LOGO="cropped-EOS-Network-Foundation-Site-Icon-1-150x150.png"
-  [ ! -f "${ARG_BUILD_DIR}/devdocs/static/img/${SMALL_LOGO}" ] && cp "${SCRIPT_DIR:?}/../web/${SMALL_LOGO}" "${ARG_BUILD_DIR:?}/devdocs/static/img/${SMALL_LOGO}"
-}
-
 #####
 # Setup docusaurus
 Install_Docusaurus() {
@@ -103,6 +98,11 @@ Install_Docusaurus() {
       >&2 echo "npm redocusaurus failed exiting"
       exit 1
     fi
+    if ! npm i react-select;
+    then
+      >&2 echo "npm react-select failed exiting"
+      exit 1
+    fi
     popd || exit
   fi
   # push our own config
@@ -119,17 +119,23 @@ Install_Docusaurus() {
   done
   # copy in i18n files
   cp -r "${SCRIPT_DIR:?}/../web/docusaurus/i18n" "${ARG_BUILD_DIR:?}/devdocs/"
-  # Overwrite entry page for docusarus
-  cp "${SCRIPT_DIR:?}/../web/docusaurus/src/pages/index.tsx" "${ARG_BUILD_DIR:?}/devdocs/src/pages"
-  cp "${SCRIPT_DIR:?}/../web/docusaurus/src/components/HomepageFeature/index.tsx" "${ARG_BUILD_DIR:?}/devdocs/src/components/HomepageFeatures"
-  # Customer CSS for Doc6s
-  cp "${SCRIPT_DIR:?}/../web/docusaurus/src/css/custom.css" "${ARG_BUILD_DIR:?}/devdocs/src/css"
 }
 
 ####
 # Copy in index files like API Reference
 Install_Web_Content() {
   cp "${SCRIPT_DIR:?}/../web/api-listing.md" "${ARG_BUILD_DIR:?}/devdocs/eosdocs/docs/"
+}
+
+###
+# Install Theme Updates
+Install_DOC6S_Theme() {
+  cp -r "${SCRIPT_DIR:?}/../web/docusaurus/src/components" "${ARG_BUILD_DIR:?}/devdocs/src/"
+  cp -r "${SCRIPT_DIR:?}/../web/docusaurus/src/css" "${ARG_BUILD_DIR:?}/devdocs/src/"
+  cp -r "${SCRIPT_DIR:?}/../web/docusaurus/src/hooks" "${ARG_BUILD_DIR:?}/devdocs/src/"
+  cp -r "${SCRIPT_DIR:?}/../web/docusaurus/src/pages" "${ARG_BUILD_DIR:?}/devdocs/src/"
+  cp -r "${SCRIPT_DIR:?}/../web/docusaurus/src/theme" "${ARG_BUILD_DIR:?}/devdocs/src/"
+  cp -r "${SCRIPT_DIR:?}/../web/docusaurus/static" "${ARG_BUILD_DIR:?}/devdocs/"
 }
 
 ###
@@ -147,7 +153,7 @@ Create_Tar() {
   item_count=$(find "${ARG_BUILD_DIR}"/devdocs/build -maxdepth 1 | wc -l)
   # UTC date YYMMDDHH
   todays_date=$(date -u +%y%m%d%H)
-  tar_file=/tmp/devdocs_${BUILD_TYPE:-production}_"${todays_date}"_update.tgz
+  tar_file=/tmp/devdocs_"${BUILD_TYPE:-production}"_"${todays_date}"_update.tgz
   if [ "$item_count" -gt 2 ]; then
     cd "${ARG_BUILD_DIR}"/devdocs/build || exit
     tar czf "$tar_file" -- *
@@ -189,7 +195,12 @@ Bootstrap_Repo() {
     else
       now=$(date +%s)
       one_hour_earlier=$(echo "$now" "- 60*60" | bc)
-      last_modified=$( stat -f %m "${WORKING_DIR}"/"${ARG_GIT_REPO}" )
+      PLATFORM=$(uname -o)
+      if [ "$PLATFORM" == "Darwin" ]; then
+        last_modified=$( stat -f %m "${WORKING_DIR}"/"${ARG_GIT_REPO}" )
+      else
+        last_modified=$( stat --format=%Y "${WORKING_DIR}"/"${ARG_GIT_REPO}" )
+      fi
       if [ "$DEBUG" ]; then
          echo "detected fast flag last modified ${last_modified} sec since epoch"
       fi
@@ -410,8 +421,8 @@ fi
 ##############################################################################
 Create_Top_Level_Dir
 Install_Docusaurus
+Install_DOC6S_Theme
 Install_Web_Content
-Install_Branding_Logos
 
 
 ##############################################################################

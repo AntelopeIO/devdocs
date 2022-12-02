@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 
 Help() {
-  echo "clean_rebuild.sh -d /path/to/build_root"
+  echo "clean_rebuild.sh -d /path/to/build_root [-s] [-y]"
+  echo "-y: yes, override the prompt to confirm directories to clean out "
+  echo "-s: output to staging location"
   echo "removes everything and rebuilds "
   echo "please specify absolute path"
   exit 1
 }
+
 
 # Get the options
 while getopts "d:sy" option; do

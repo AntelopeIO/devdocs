@@ -8,6 +8,7 @@
 ##############################################################################
 #Create_Top_Level_Dir
 #Install_Docusaurus
+#Install_Branding_Logos
 #Install_DOC6S_Theme
 #Install_Web_Content
 ##############################################################################
@@ -127,15 +128,31 @@ Install_Web_Content() {
   cp "${SCRIPT_DIR:?}/../web/api-listing.md" "${ARG_BUILD_DIR:?}/devdocs/eosdocs/docs/"
 }
 
+####
+# Copy over logos
+Install_Branding_Logos() {
+  # copy over the logo these directories created when docusarus site is build
+  [ ! -f "${ARG_BUILD_DIR}/devdocs/static/img/eosn_logo.png" ] && cp "${SCRIPT_DIR:?}/../web/eosn_logo.png" "${ARG_BUILD_DIR:?}/devdocs/static/img/eosn_logo.png"
+  SMALL_LOGO="cropped-EOS-Network-Foundation-Site-Icon-1-150x150.png"
+  [ ! -f "${ARG_BUILD_DIR}/devdocs/static/img/${SMALL_LOGO}" ] && cp "${SCRIPT_DIR:?}/../web/${SMALL_LOGO}" "${ARG_BUILD_DIR:?}/devdocs/static/img/${SMALL_LOGO}"
+}
+
+
 ###
 # Install Theme Updates
 Install_DOC6S_Theme() {
-  cp -r "${SCRIPT_DIR:?}/../web/docusaurus/src/components" "${ARG_BUILD_DIR:?}/devdocs/src/"
-  cp -r "${SCRIPT_DIR:?}/../web/docusaurus/src/css" "${ARG_BUILD_DIR:?}/devdocs/src/"
-  cp -r "${SCRIPT_DIR:?}/../web/docusaurus/src/hooks" "${ARG_BUILD_DIR:?}/devdocs/src/"
-  cp -r "${SCRIPT_DIR:?}/../web/docusaurus/src/pages" "${ARG_BUILD_DIR:?}/devdocs/src/"
-  cp -r "${SCRIPT_DIR:?}/../web/docusaurus/src/theme" "${ARG_BUILD_DIR:?}/devdocs/src/"
-  cp -r "${SCRIPT_DIR:?}/../web/docusaurus/static" "${ARG_BUILD_DIR:?}/devdocs/"
+  # Overwrite entry page for docusarus
+  cp "${SCRIPT_DIR:?}/../web/docusaurus/src/pages/index.tsx" "${ARG_BUILD_DIR:?}/devdocs/src/pages"
+  cp "${SCRIPT_DIR:?}/../web/docusaurus/src/components/HomepageFeature/index.tsx" "${ARG_BUILD_DIR:?}/devdocs/src/components/HomepageFeatures"
+  # Customer CSS for Doc6s
+  cp "${SCRIPT_DIR:?}/../web/docusaurus/src/css/custom.css" "${ARG_BUILD_DIR:?}/devdocs/src/css"
+  # Copy in full theme doesn't exist so commented out
+  #cp -r "${SCRIPT_DIR:?}/../web/docusaurus/src/components" "${ARG_BUILD_DIR:?}/devdocs/src/"
+  #cp -r "${SCRIPT_DIR:?}/../web/docusaurus/src/css" "${ARG_BUILD_DIR:?}/devdocs/src/"
+  #cp -r "${SCRIPT_DIR:?}/../web/docusaurus/src/hooks" "${ARG_BUILD_DIR:?}/devdocs/src/"
+  #cp -r "${SCRIPT_DIR:?}/../web/docusaurus/src/pages" "${ARG_BUILD_DIR:?}/devdocs/src/"
+  #cp -r "${SCRIPT_DIR:?}/../web/docusaurus/src/theme" "${ARG_BUILD_DIR:?}/devdocs/src/"
+  #cp -r "${SCRIPT_DIR:?}/../web/docusaurus/static" "${ARG_BUILD_DIR:?}/devdocs/"
 }
 
 ###
@@ -426,9 +443,9 @@ fi
 ##############################################################################
 Create_Top_Level_Dir
 Install_Docusaurus
+Install_Branding_Logos
 Install_DOC6S_Theme
 Install_Web_Content
-
 
 ##############################################################################
 # Main - Calls Code Based on Arguments Passed In

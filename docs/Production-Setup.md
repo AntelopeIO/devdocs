@@ -9,8 +9,8 @@ The scripts will deploy to a production hosts when the `-h host` and `-i identit
 
 The installation paths are fixed. These paths can only be changed in the code. The staging path is set when you provide the `-s` flag to `generate_documents.sh`
 
-- production - `/var/www/html/ENF/production`
-- staging - `/var/www/html/ENF/devrel_staging`
+- production - `/var/www/html/antelope/production`
+- staging - `/var/www/html/antelope/devrel_staging`
 
 ## Webserver Setup
 

@@ -15,7 +15,7 @@ In most cases just make updates in github, and the updates will flow through in 
 - Statics - images, fonts, icons, etc `web/docusaurus/static`
 
 These are copied over in the `generate_documents.sh` script. You can see the copy logic below. Any additions to the directories listed above will get pulled over and copied
-https://github.com/eosnetworkfoundation/docsgen/blob/main/scripts/generate_documents.sh#L128-L135
+https://github.com/AntelopeIO/docsgen/blob/main/scripts/generate_documents.sh#L128-L135
 
 ### Configuration
 Config files live under `config` and are labled `docusaurus.config.js*`. The configuration files configure the cards on the home page, and the navigation menus.

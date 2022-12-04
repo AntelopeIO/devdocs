@@ -1,6 +1,7 @@
 # Automated Documentation #
-Scripts to generate Web Documentation Portal. Goal of this project is create a single documentation portal linking together documentation across the EOS Network's code repositories. This portal will make an effort to make it easy to build and maintain EOS projects.
-* Single place EOS documentation
+Scripts to generate Web Documentation Portal. Goal of this project is create a single documentation portal linking together documentation across the Antelope Network's code repositories.
+This portal will make an effort to make it easy to build and maintain Antelope projects.
+* Single place Antelope documentation
 * Unified presentation of documentation
 * Single navigation hierarchy covering documentation
 * Consistent UI for documentation
@@ -31,18 +32,18 @@ Testing utilizes [Cypress](https://www.cypress.io/), while search is powered by 
 
 |   Topic  |  Source Repository  | Top Level Path | Process To HTML |
 |  ------- | ------------------- | -------------- | ------------ |
-| Nodeos HTTP API | [mandel](https://github.com/AntelopeIO/leap) | leap-plugins/ | openAPI yaml and redocly |
+| Nodeos HTTP API | [leap](https://github.com/AntelopeIO/leap) | leap-plugins/ | openAPI yaml and redocly |
 | JS SDK API Documentation | [mandel-eosjs](https://github.com/eosnetworkfoundation/mandel-eosjs) | eosjs/ | Docusaurus |
 | Swift API Documentation | [mandel-swift](https://github.com/eosnetworkfoundation/mandel-swift) | reference/swiftdocs | static html |
 | Swift API Manuals | [mandel-swift](https://github.com/eosnetworkfoundation/mandel-swift) | swift-sdk | Docusaurus |
 | Java API Documentation | [mandel-java](https://github.com/eosnetworkfoundation/mandel-java) | reference/javadocs | static html |
-| EOS System Contracts | [eos-system-contracts](https://github.com/eosnetworkfoundation/eos-system-contracts) | system-contracts | Docusaurus |
-| Contract Developer Tools | [cdt](https://github.com/AntelopeIO/cdt) | cdt | Docusarus |
-| DUNE | [DUNE](https://github.com/AntelopeIO/DUNE.git) | DUNE | Docusarus |
-| Nodeos, Cleos, Kloes Manuals | [Leap](https://github.com/AntelopeIO/leap) | leap | Docusarus |
-| Tutorials | [Docs](https://github.com/eosnetworkfoundation/welcome.git) | docs/tutorials | Docusarus |
-| Glossary | [Docs](https://github.com/eosnetworkfoundation/welcome.git) | glossary | Docusarus |
-| Docs | [Docs](https://github.com/eosnetworkfoundation/welcome.git) | docs | docusarus |
+| Antelope Reference Contracts | [reference-contracts](https://github.com/AntelopeIO/reference-contracts) | reference-contracts | Docusaurus |
+| Contract Developer Tools | [cdt](https://github.com/AntelopeIO/cdt) | cdt | Docusaurus |
+| DUNE | [DUNE](https://github.com/AntelopeIO/DUNE.git) | DUNE | Docusaurus |
+| Nodeos, Cleos, Kloes Manuals | [Leap](https://github.com/AntelopeIO/leap) | leap | Docusaurus |
+| Tutorials | [Docs](https://github.com/AntelopeIO/docs.git) | docs/tutorials | Docusaurus |
+| Glossary | [Docs](https://github.com/AntelopeIO/docs.git) | glossary | Docusaurus |
+| Docs | [Docs](https://github.com/AntelopeIO/docs.git) | docs | docusaurus |
 
 ## Initialize Content Repository ##
 See [First Install Software](docs/FirstInstallSoftware.md) for all the dependancies.
@@ -53,7 +54,7 @@ See [First Install Software](docs/FirstInstallSoftware.md) for all the dependanc
 
 The script `generate_documents.sh` clones various git repos, extracts documentation and then copies to `/path/to/build_dir folder`. The scripts are designed to be called once for each git repository.
 ```
-Creates web version of documentation pulling together documentation from several git repositories across the EOS Networks
+Creates web version of documentation pulling together documentation from several git repositories across the Antelope Network
 
 Syntax: generate_documents.sh [-r|d|b|t|i|h|c|s|x|f]
 mandatory: -r owner/rep and -d directory
@@ -70,8 +71,8 @@ options:
 -x: suppress build statics process
 -f: fast, skip git checkout if files less then 1 hour old
 
-example: generate_documents.sh -r eosnetworkfoundation/mandel -b ehp-working -t v3.1.1 -d /path/to/build_root -i aws_identity -h eric@hostA -h eric@hostB -c /path/to/backup_dir
-Run script to build mandel docs and update production site , with branch ehp-working and tag v3.1.1. This updates latest documentation version
+example: generate_documents.sh -r AntelopeIO/leap -b ehp-working -t v3.1.1 -d /path/to/build_root -i aws_identity -h eric@hostA -h eric@hostB -c /path/to/backup_dir
+Run script to build leap docs and update production site , with branch ehp-working and tag v3.1.1. This updates latest documentation version
 When you provide host and identify the content will be deployed to a production server
    Default location for files is /var/www/html/ENF/production
    Staging location for files is /var/www/html/ENF/devrel_staging

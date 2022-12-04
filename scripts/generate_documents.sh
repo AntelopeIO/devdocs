@@ -40,7 +40,7 @@ Help() {
   echo "-x: suppress build statics process"
   echo "-f: fast, skip git clone if files less then 1 hour old"
   echo ""
-  echo "example: generate_documents.sh -r eosnetworkfoundation/mandel -b ericpassmore-working -t v3.1.1 -d /path/to/build_root -i aws_identity -h eric@hostA -h eric@hostB -c /s3mount/content"
+  echo "example: generate_documents.sh -r AntelopeIO/mandel -b ericpassmore-working -t v3.1.1 -d /path/to/build_root -i aws_identity -h eric@hostA -h eric@hostB -c /s3mount/content"
   echo "Run script to build mandel docs and update production site , with branch ericpassmore-working and tag v3.1.1. This updates latest documentation version"
   echo "When you provide host and identify the content will be deployed to a production server"
   echo "   Default location for files is /var/www/html/antelope/production"
@@ -309,7 +309,7 @@ do
   rm \$oldfile
 done
 rm -f "${archive}"
-find /tmp/ -type f -mtime +30 -name "devdocs_*.tgz" -print0 | while IFS= read -r -d '' tmpfile
+find /tmp/ -type f -name "devdocs_*.tgz" -print0 | while IFS= read -r -d '' tmpfile
 do
   rm \$tmpfile
 done

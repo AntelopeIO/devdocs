@@ -42,7 +42,7 @@ What we upload to Algoria. Structured as JSON
 - docs-leap-current
 - docs-dune-current
 - docs-default-current
-- docs-system-contracts-current
+- docs-reference-contracts-current
 - docs-cdt-current
 - docs-swift-sdk-current
 - docs-eosjs-current

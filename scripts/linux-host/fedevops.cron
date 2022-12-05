@@ -1,0 +1,5 @@
+# Edit this file to introduce tasks to be run by cron.
+#
+# m h  dom mon dow   command
+0 15 * * * /home/fedevops/AntelopeIO/docsgen/scripts/clean_rebuild.sh -d /home/fedevops/AntelopeIO/build_dir/ -y -s 2>>/home/fedevops/AntelopeIO/logs/error_$(date +%y-%m-%d).log >>/home/fedevops/AntelopeIO/logs/nightly_staging_build_$(date +%y-%m-%d).log
+0 5 * * * find /home/fedevops/AntelopeIO/logs -mtime +30 -print0 | while IFS= read -r -d '' logfile; do rm "$logfile" ; done 2>/home/fedevops/AntelopeIO/logs/error_cront_clean.log

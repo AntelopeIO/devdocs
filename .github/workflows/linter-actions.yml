@@ -1,6 +1,6 @@
 name: linter-actions
 on: [push]
-paths:
+path:
   - 'scripts/*.sh'
 jobs:
   shell-lint:

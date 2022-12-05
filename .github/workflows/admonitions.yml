@@ -1,6 +1,6 @@
 name: admonition
 on: [push]
-paths:
+path:
   - 'scripts/process_admonitions.py'
 jobs:
   admonition-test:

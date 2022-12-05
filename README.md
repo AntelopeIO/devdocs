@@ -74,8 +74,8 @@ options:
 example: generate_documents.sh -r AntelopeIO/leap -b ehp-working -t v3.1.1 -d /path/to/build_root -i aws_identity -h eric@hostA -h eric@hostB -c /path/to/backup_dir
 Run script to build leap docs and update production site , with branch ehp-working and tag v3.1.1. This updates latest documentation version
 When you provide host and identify the content will be deployed to a production server
-   Default location for files is /var/www/html/ENF/production
-   Staging location for files is /var/www/html/ENF/devrel_staging
+   Default location for files is /var/www/html/antelope/production
+   Staging location for files is /var/www/html/antelope/devrel_staging
    Currently these locations are not configurable
 ```
 

@@ -81,6 +81,7 @@ class Document:
         previous_state = self.working_on_admonition
         # check for and process admonition line1
         # if match self.working_on_admonition is True
+        # When processing admonition body find_admonition does nothing
         self.find_admonition(line)
         current_state = self.working_on_admonition
 
@@ -105,6 +106,7 @@ class Document:
                     self.contents = (self.contents if (self.contents is not None) else "") + self.print_newblock()
                     logging.debug("corner case following text line is not part of admonition so add it back\n")
                     self.contents = (self.contents if (self.contents is not None) else "") + line
+                    # very import to reset, otherwise you will get duplicate admonitions
                     self.reset_to_init()
 
     # finish processing at end of file

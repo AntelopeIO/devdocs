@@ -1,5 +1,7 @@
 name: admonition
 on: [push]
+paths:
+  - 'scripts/process_admonitions.py'
 jobs:
   admonition-test:
     runs-on: ubuntu-latest

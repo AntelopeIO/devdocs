@@ -161,6 +161,9 @@ The repo `mandel-eosjs` is cloned and typedoc runs to generate the documentation
 ## Antelope Reference Contract API Reference ##
 -The repo `reference-contracts` is cloned. The markdown is copied into the `reference-contracts` folder and doxygen/doxybook2 is run to generate markdown files which live under `reference-contracts/reference`
 
+## Antelope Plugin API ##
+[See redocly-openapi](./redocly-openapi.md)
+
 ## Contract Developer Toolkit ##
 The repo `cdt` is cloned. The markdown is copied into the `cdt` folder and doxygen/doxybook2 is run to generate markdown files which live under `cdt/reference`
 

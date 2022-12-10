@@ -13,7 +13,7 @@ API documentation is presented in the documentation. Each of the following items
 An example of a full URL path for a subschema is [https://docs.eosnetwork.com/openapi/v2.0/Name.yaml](https://docs.eosnetwork.com/openapi/v2.0/Name.yaml).
 
 # How It Works
-The `[redocly](https://redocly.com/0` code is run by Docusaurus as a plugin `redocusaurus`. This plugin parses the YAML file for the main `leap` apis. As the YAML files are parsed the URL for the subschema is extracted and the contents are downloaded.
+The `[redocly](https://redocly.com/)` code is run by Docusaurus as a plugin `redocusaurus`. This plugin parses the YAML file for the main `leap` apis. As the YAML files are parsed the URL for the subschema is extracted and the contents are downloaded.
 
 ```mermaid
 graph LR;
@@ -29,3 +29,6 @@ graph LR;
    subschemas-->eos_api_docs;
    subschemas-->antelope_api_docs;
 ```
+
+# Current Setup
+Today the subschemas are copied by hand to the production server. The are [served under the URL](https://docs.eosnetwork.com/openapi/v2.0/). Their current location on the physical web host is `$DOCROOT/ENF/production/openapi/`. 

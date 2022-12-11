@@ -136,8 +136,8 @@ Need to make sure python 3.4 or better is installed. It is assumed the executabl
 Clone the engineering repo.
 
 ```
-git clone https://github.com/AntelopeIO/devdocs
-cd devdocs
+git clone https://github.com/AntelopeIO/docsgen
+cd docsgen
 ```
 Follow the instructions in the README.md to
 * initialize

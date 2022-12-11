@@ -11,49 +11,15 @@ This document goes over how to build a new document repository, staring from not
 - publish to production
 - re-index search
 
-## Checkout DevDocs  
+## Checkout DocsGen  
 Main branch is the production version
 ```
-git clone https://github.com/AntelopeIO/devdocs.git
+git clone https://github.com/AntelopeIO/docsgen.git
 ```
 
 ## Update Config
 
-Edit `config/docusaruus.config.js`. Look for the section `themeConfig -> navbar -> items`. You need to update the versions for the drop down menus. For example below we add a new 3.1 section, point it to latest and move 2.0 to a versioned URL.
-
-**FROM**
-```
-{
-  type: 'dropdown',
-  label: 'Leap',
-  position: 'left',
-  items: [
-    {
-      label: '2.0',
-      href: '/leap/latest/',
-    },
-    // ... more items
-  ],
-},
-```
-**TO**
-```
-{
-  type: 'dropdown',
-  label: 'Leap',
-  position: 'left',
-  items: [
-    {
-      label: '3.1',
-      href: '/leap/latest/',
-    },
-    {
-      label: '2.0',
-      href: '/leap/2.0/',
-    },
-  ],
-},
-```
+Edit `config/docusaruus.config.js`. Look at `main.firstCards` and `main.secondCards` this configuration controls the links for the cards on the homepage.
 
 ## Generate Documents
 
@@ -80,16 +46,16 @@ The last repo is run without the `-x` flag and that will run the build that gene
 BUILD_DIR=$HOME/AntelopeIO/build_root
 for gitrepo in AntelopeIO/docs \
     AntelopeIO/cdt \
-    AntelopeIO/reference-contracts \
+    tAntelopeIO/reference-contracts \
     AntelopeIO/leap \
     AntelopeIO/DUNE \
-    eosnetworkfoundation/mandel-eosjs \
+    AntelopeIO/mandel-eosjs \
     eosnetworkfoundation/mandel-java
 do
   echo "working on ${gitrepo}"
   ./generate_documents.sh -d "${BUILD_DIR:?}" -r ${gitrepo} -x
 done
-# one last time without supress flag
+# one last time without suppress flag
 # this last run builds the statics via "npm run build"
 ./generate_documents.sh -d "${BUILD_DIR:?}" -r "eosnetworkfoundation/mandel-swift"
 ```
@@ -115,7 +81,7 @@ Running the generate script with a `-i` identify file and `-h` host will push th
    - copies tar'd file to remote hosts
    - backups existing site to a tar file
    - untar new content
-   - removes tar files (backups and new docs) older than 30 days 
+   - removes tar files (backups and new docs) older than 30 days
 
 
 ```

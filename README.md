@@ -1,5 +1,6 @@
 # Automated Documentation #
-Scripts to generate Web Documentation Portal. Goal of this project is create a single documentation portal linking together documentation across the Antelope Network's code repositories. This portal will make an effort to make it easy to build and maintain Antelope projects.
+Scripts to generate Web Documentation Portal. Goal of this project is create a single documentation portal linking together documentation across the Antelope Network's code repositories.
+This portal will make an effort to make it easy to build and maintain Antelope projects.
 * Single place Antelope documentation
 * Unified presentation of documentation
 * Single navigation hierarchy covering documentation
@@ -45,7 +46,7 @@ Testing utilizes [Cypress](https://www.cypress.io/), while search is powered by 
 | Docs | [Docs](https://github.com/AntelopeIO/docs.git) | docs | docusaurus |
 
 ## Initialize Content Repository ##
-See [First Install Software](docs/FirstInstallSoftware.md) for all the dependencies.
+See [First Install Software](docs/FirstInstallSoftware.md) for all the dependancies.
 
 ## Generating Content ##
 
@@ -55,7 +56,7 @@ The script `generate_documents.sh` clones various git repos, extracts documentat
 ```
 Creates web version of documentation pulling together documentation from several git repositories across the Antelope Network
 
-Syntax: generate_documents.sh [-r|d|b|t|v|i|h]
+Syntax: generate_documents.sh [-r|d|b|t|i|h|c|s|x|f]
 mandatory: -r owner/rep and -d directory
 
 options:
@@ -72,8 +73,24 @@ options:
 
 example: generate_documents.sh -r AntelopeIO/leap -b ehp-working -t v3.1.1 -d /path/to/build_root -i aws_identity -h eric@hostA -h eric@hostB -c /path/to/backup_dir
 Run script to build leap docs and update production site , with branch ehp-working and tag v3.1.1. This updates latest documentation version
+When you provide host and identify the content will be deployed to a production server
+   Default location for files is /var/www/html/antelope/production
+   Staging location for files is /var/www/html/antelope/devrel_staging
+   Currently these locations are not configurable
 ```
 
 After running there will be many static HTML, CSS, JS files under `/path/to/build_dir/devdocs/build`. The files are served as the current production version.
 
 See [Generating Documents](docs/GeneratingDocuments.md) for additional details
+
+## Updating Presentation
+See [Updating Presentation](docs/update-presentation.md) for a guide on updating the look and feel of the site.
+
+## Updating Site Navigation
+See [Updating Site Navigation](docs/SiteNavigation.md)
+
+## Testing
+see [Testing](docs/Testing.md)
+
+## Production Setup
+see [Production Setup](docs/Production-Setup.md) for details on setting up a webserve to serve the content.

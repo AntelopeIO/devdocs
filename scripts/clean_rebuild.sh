@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 
 Help() {
-  echo "clean_rebuild.sh -d /path/to/build_root"
+  echo "clean_rebuild.sh -d /path/to/build_root [-s] [-y]"
+  echo "-y: yes, override the prompt to confirm directories to clean out "
+  echo "-s: output to staging location"
   echo "removes everything and rebuilds "
   echo "please specify absolute path"
   exit 1
 }
+
 
 # Get the options
 while getopts "d:sy" option; do
@@ -51,8 +54,8 @@ fi
 
 # Remove Last Updates while we run job
 # Set Lock File
-UPDATE_DATETIME_FILE="${WEBROOT:-/var/www/html/antelope}"/updated.html
-LOCK_FILE="${WEBROOT:-/var/www/html/antelope}"/clean_rebuild.lock
+UPDATE_DATETIME_FILE="${WEBROOT:-/var/www/html/antelope/production}"/updated.html
+LOCK_FILE="${WEBROOT:-/var/www/html/antelope/production}"/clean_rebuild.lock
 
 ## Exit if lock file exists
 #  Else Set lock file
@@ -161,7 +164,7 @@ popd || exit
 
 ## All done, remove the lock file, and set last updated times
 # local builds do not have webroot so skip
-if [ -d "$WEBROOT" ]; then
+if [ -d "${WEBROOT:-/var/www/html/antelope/production}" ]; then
   if [ -f "$LOCK_FILE" ]; then
     rm -f $LOCK_FILE
   fi
